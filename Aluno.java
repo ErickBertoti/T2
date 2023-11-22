@@ -13,20 +13,8 @@ public class Aluno {
     private String observacoes;
     private boolean ativo;
    
-    public Aluno(int id, String nome, int idade, String email, String endereco, String cep, String telefone,
-            String usuario, String senha, String curso, String observacoes, boolean ativo) {
-        this.id = id;
-        this.nome = nome;
-        this.idade = idade;
-        this.email = email;
-        this.endereco = endereco;
-        this.cep = cep;
-        this.telefone = telefone;
-        this.usuario = usuario;
-        this.senha = senha;
-        this.curso = curso;
-        this.observacoes = observacoes;
-        this.ativo = ativo;
+  
+    public Aluno() {
     }
 
     public int getId() {
@@ -124,5 +112,32 @@ public class Aluno {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    public void add(Aluno aluno) {
+    }
+
+
+    @Override
+	public String toString() {
+		return String.format("%d: %s, %s\n", id, nome, idade, email, endereco, cep, telefone, usuario, senha, curso, observacoes, ativo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+
+		if (obj == null) {
+			return false;
+		}
+
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+
+		Aluno aluno = (Aluno) obj;
+		return id == aluno.id;
+	}
 
 }
