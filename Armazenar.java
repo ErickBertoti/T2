@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import GUI.Aluno;
+
 public class Armazenar {
 
 	public static void inserir(Aluno aluno) {
