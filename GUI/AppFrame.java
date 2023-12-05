@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 public class AppFrame extends JFrame {
 
     public AppFrame(){
+        
 
         setTitle("Cadastro de Estudantes");
         setSize(400, 300);
@@ -35,8 +36,6 @@ public class AppFrame extends JFrame {
             }
         });
 
-
-
          JButton botaoEditar = new JButton("Editar Cadastro");
          botaoEditar.setBounds(800, 20, 200, 30);
          add(botaoEditar);
@@ -50,5 +49,5 @@ public class AppFrame extends JFrame {
 
        setVisible(true);
     }
-    
+
 }
