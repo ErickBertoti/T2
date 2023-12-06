@@ -1,53 +1,59 @@
 package GUI;
-import javax.swing.JFrame;
 
-import javax.swing.JButton;
+import java.awt.CardLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 
 
 public class AppFrame extends JFrame {
+	public static final String titulo = "Sistema de cadastro estudantil";
+	
+	private CardLayout layout;
+	private JPanel cardsPane;
 
-    public AppFrame(){
-        
+	private InicialPanel inicialPanel;
+	private AlunoListPanel alunoListPanel;
+	private AlunoForm alunoForm;
 
-        setTitle("Cadastro de Estudantes");
-        setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public AppFrame() {
+		super(titulo);
 
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        
-        setLayout(null);
+		layout = new CardLayout();
 
-         JButton botaoCriar = new JButton("Criar Cadastro");
-         botaoCriar.setBounds(600, 20, 200, 30);
-         add(botaoCriar);
+		cardsPane = new JPanel();
+		cardsPane.setLayout(layout);
+		add(cardsPane);
 
+		criarCards();
+	}
 
-         botaoCriar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Ao clicar no botão, instancia e exibe o formulário de cadastro
-                new FormularioCadastro().setVisible(true);
-            }
-        });
+	public void mostrar() {
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
 
-         JButton botaoEditar = new JButton("Editar Cadastro");
-         botaoEditar.setBounds(800, 20, 200, 30);
-         add(botaoEditar);
+	public void mostrarListaAlunos() {
+		AlunoListPanel.recarregar();
+		layout.show(cardsPane, AlunoListPanel.class.getName());
+	}
+	
+	public void mostrarFormAlunos(Aluno aluno) {
+		AlunoForm.setAlunos(aluno);
+		layout.show(cardsPane, AlunoForm.class.getName());
+	}
 
-         JButton botaoDeletar = new JButton("Deletar Cadastro");
-         botaoDeletar.setBounds(1000, 20, 200, 30);
-         add(botaoDeletar);
+	private void criarCards() {
+		inicialPanel = new InicialPanel(this);
+		cardsPane.add(inicialPanel, InicialPanel.class.getName());
 
+		alunoListPanel = new AlunoListPanel(this);
+		cardsPane.add(alunoListPanel, AlunoListPanel.class.getName());
 
-
-
-       setVisible(true);
-    }
-
+		alunoForm = new AlunoForm(this);
+		cardsPane.add(alunoForm, AlunoForm.class.getName());
+	}
 }
