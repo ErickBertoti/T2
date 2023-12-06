@@ -1,6 +1,7 @@
-package GUI;
+package src.view;
 
-import src.*;
+import src.model.Aluno;
+import src.model.Armazenar;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -69,7 +70,7 @@ public class AlunoListPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Aluno aluno = alunoTableModel.getAluno(tabela.getSelectedRow());
-				int resposta = JOptionPane.showConfirmDialog(AlunoListPanel.this, "Tem certeza irmão?",
+				int resposta = JOptionPane.showConfirmDialog(AlunoListPanel.this, "Tem certeza que deseja remover?",
 						AppFrame.titulo, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if (resposta == JOptionPane.YES_OPTION) {
 					Armazenar.remover(aluno);

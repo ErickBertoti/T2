@@ -1,6 +1,7 @@
-package GUI;
+package src.view;
 
-import src.*;
+import src.model.Aluno;
+
 import java.util.ArrayList;
 import java.util.List;
 

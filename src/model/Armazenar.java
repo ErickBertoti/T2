@@ -1,4 +1,4 @@
-package src;
+package src.model;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import GUI.Aluno;
 
 public class Armazenar {
 
@@ -87,7 +85,7 @@ public class Armazenar {
 				e.printStackTrace();
 			}
 		}
-	} // fim do método atualizar(Tarefa)
+	} 
 
 	public static void remover(Aluno aluno) {
 		final String query = "DELETE FROM aluno WHERE id = ?";
@@ -139,7 +137,7 @@ public class Armazenar {
                 aluno.setSenha(rs.getString("senha"));
                 aluno.setCurso(rs.getString("curso"));
                 aluno.setObservacoes(rs.getString("observacoes"));
-                aluno.setAtivo(rs.getBoolean("nome"));
+                aluno.setAtivo(rs.getBoolean("ativo"));
 
 				alunos.add(aluno);
 			}

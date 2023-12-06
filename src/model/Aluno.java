@@ -1,4 +1,4 @@
-package GUI;
+package src.model;
 
 public class Aluno {
     

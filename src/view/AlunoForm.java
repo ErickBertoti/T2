@@ -1,6 +1,8 @@
-package GUI;
+package src.view;
 
-import src.*;
+import src.model.Aluno;
+import src.model.Armazenar;
+
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -94,7 +96,6 @@ public void componentShown(ComponentEvent e) {
     }
 
     public static void setAluno(Aluno aluno) {
-		Aluno Aluno = aluno;
 	}
 
     private void criarForm() {
@@ -212,37 +213,20 @@ public void componentShown(ComponentEvent e) {
                     aluno.setObservacoes(observacoesTxt.getText());
                     aluno.setAtivo(ativoCheckbox.isSelected());
     
-                    if (validarCampos()) {
-                        aluno.setCurso(cursoTxt.getText());
-                        aluno.setObservacoes(observacoesTxt.getText());
-                        aluno.setAtivo(ativoCheckbox.isSelected());
-    
                         Armazenar.atualizar(aluno);
     
                         JOptionPane.showMessageDialog(AlunoForm.this, "Aluno salvo com sucesso!", AppFrame.titulo,
                                 JOptionPane.INFORMATION_MESSAGE);
     
                         frame.mostrarListaAlunos();
-                    } else {
-                        JOptionPane.showMessageDialog(AlunoForm.this,
-                                "Todos os campos, exceto telefone, cep ou observações, devem ser preenchidos!",
-                                "Erro de validação", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-            }
+            
         });
         panel.add(salvarBtn);
     }
 
-    private boolean validarCampos() {
-        return !nomeTxt.getText().isEmpty()
-                && !idadeTxt.getText().isEmpty()
-                && !emailTxt.getText().isEmpty()
-                && !enderecoTxt.getText().isEmpty()
-                && !usuarioTxt.getText().isEmpty()
-                && !String.valueOf(senhaTxt.getPassword()).isEmpty()
-                && !cursoTxt.getText().toString().isEmpty();
-    }
+
 
     private void criarCancelarBtn(JPanel panel) {
         cancelarBtn = new JButton("Cancelar");
