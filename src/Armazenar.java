@@ -53,7 +53,7 @@ public class Armazenar {
 				e.printStackTrace();
 			}
 		}
-	} // fim do método inserir(Tarefa)
+	}
 
 	public static void atualizar(Aluno aluno) {
 		final String query = "UPDATE aluno SET nome = ?, idade = ?, email = ?, endereco = ?, cep = ?, telefone = ?, usuario = ?, senha = ?, curso = ?, observacoes = ?, ativo = ? WHERE id = ?";
@@ -111,7 +111,7 @@ public class Armazenar {
 				e.printStackTrace();
 			}
 		}
-	} // fim do método remover(Tarefa)
+	}
 
 	public static List<Aluno> listar() {
 		List<Aluno> alunos = new ArrayList<>();

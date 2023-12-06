@@ -11,11 +11,12 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;  // Added import for JCheckBox
+import javax.swing.JCheckBox; 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -38,10 +39,10 @@ public class AlunoForm extends JPanel {
     private JTextField cepTxt;
     private JTextField telefoneTxt;
     private JTextField usuarioTxt;
-    private JTextField senhaTxt;
+    private JPasswordField senhaTxt;
     private JTextField cursoTxt;
     private JTextArea observacoesTxt;
-    private JCheckBox ativoCheckbox;  // Added field for JCheckBox
+    private JCheckBox ativoCheckbox;  
 
     private JButton salvarBtn;
     private JButton cancelarBtn;
@@ -70,7 +71,6 @@ public void componentShown(ComponentEvent e) {
         senhaTxt.setText("");
         cursoTxt.setText("");
         observacoesTxt.setText("");
-        // Assuming ativoCheckbox is the name of your JCheckBox component
         ativoCheckbox.setSelected(false);
     } else {
         idTxt.setText(Integer.toString(aluno.getId()));
@@ -82,9 +82,8 @@ public void componentShown(ComponentEvent e) {
         telefoneTxt.setText(aluno.getTelefone());
         usuarioTxt.setText(aluno.getUsuario());
         senhaTxt.setText(aluno.getSenha());
-        cursoTxt.setText(aluno.getCurso());
+        cursoTxt.setText(aluno.getCurso());      
         observacoesTxt.setText(aluno.getObservacoes());
-        // Assuming ativoCheckbox is the name of your JCheckBox component
         ativoCheckbox.setSelected(aluno.isAtivo());
 }   
     }
@@ -145,21 +144,21 @@ public void componentShown(ComponentEvent e) {
 
         rotulo = new JLabel("Senha");  
         adicionarComponente(rotulo, 8, 0);
-        senhaTxt = new JTextField(15);
+        senhaTxt = new JPasswordField(15);
         adicionarComponente(senhaTxt, 8, 1);
 
-        rotulo = new JLabel("Curso");  
+        rotulo = new JLabel("Curso");
         adicionarComponente(rotulo, 9, 0);
-        cursoTxt = new JTextField(30);
+        cursoTxt = new JTextField(30);  
         adicionarComponente(cursoTxt, 9, 1);
 
-        rotulo = new JLabel("Observações");  
+        rotulo = new JLabel("Observações");
         adicionarComponente(rotulo, 10, 0);
-        observacoesTxt = new JTextArea(5, 30);
+        observacoesTxt = new JTextArea(3, 30); 
         JScrollPane scrollPane = new JScrollPane(observacoesTxt);
-        adicionarComponente(scrollPane, 10, 1, 1, 5);
+        adicionarComponente(scrollPane, 10, 1, 1, 1);
 
-        rotulo = new JLabel("Ativo");  // Assuming "Ativo" corresponds to the boolean field
+        rotulo = new JLabel("Ativo");
         adicionarComponente(rotulo, 11, 0);
         ativoCheckbox = new JCheckBox();
         adicionarComponente(ativoCheckbox, 11, 1);
@@ -176,7 +175,7 @@ public void componentShown(ComponentEvent e) {
         criarSalvarBtn(btnPanel);
         criarCancelarBtn(btnPanel);
 
-        adicionarComponente(btnPanel, 7, 1, 2, 1);
+        adicionarComponente(btnPanel, 15, 1, 2, 1);
     }
 
     private void criarSalvarBtn(JPanel panel) {
@@ -213,16 +212,36 @@ public void componentShown(ComponentEvent e) {
                     aluno.setObservacoes(observacoesTxt.getText());
                     aluno.setAtivo(ativoCheckbox.isSelected());
     
-                    Armazenar.atualizar(aluno);
+                    if (validarCampos()) {
+                        aluno.setCurso(cursoTxt.getText());
+                        aluno.setObservacoes(observacoesTxt.getText());
+                        aluno.setAtivo(ativoCheckbox.isSelected());
+    
+                        Armazenar.atualizar(aluno);
+    
+                        JOptionPane.showMessageDialog(AlunoForm.this, "Aluno salvo com sucesso!", AppFrame.titulo,
+                                JOptionPane.INFORMATION_MESSAGE);
+    
+                        frame.mostrarListaAlunos();
+                    } else {
+                        JOptionPane.showMessageDialog(AlunoForm.this,
+                                "Todos os campos, exceto telefone, cep ou observações, devem ser preenchidos!",
+                                "Erro de validação", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-    
-                JOptionPane.showMessageDialog(AlunoForm.this, "Aluno salvo com sucesso!", AppFrame.titulo,
-                        JOptionPane.INFORMATION_MESSAGE);
-    
-                frame.mostrarListaAlunos();
             }
         });
         panel.add(salvarBtn);
+    }
+
+    private boolean validarCampos() {
+        return !nomeTxt.getText().isEmpty()
+                && !idadeTxt.getText().isEmpty()
+                && !emailTxt.getText().isEmpty()
+                && !enderecoTxt.getText().isEmpty()
+                && !usuarioTxt.getText().isEmpty()
+                && !String.valueOf(senhaTxt.getPassword()).isEmpty()
+                && !cursoTxt.getText().toString().isEmpty();
     }
 
     private void criarCancelarBtn(JPanel panel) {
