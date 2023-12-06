@@ -1,4 +1,4 @@
-package src.model;
+package resources.src.model;
 
 public class Aluno {
     

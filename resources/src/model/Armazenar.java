@@ -1,4 +1,4 @@
-package src.model;
+package resources.src.model;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -65,16 +65,18 @@ public class Armazenar {
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, aluno.getNome());
 			stmt.setInt(2, aluno.getIdade());
-            stmt.setString(3, aluno.getEmail());
-            stmt.setString(4, aluno.getEndereco());
-            stmt.setString(5, aluno.getCep());
-            stmt.setString(6, aluno.getTelefone());
-            stmt.setString(7, aluno.getUsuario());
-            stmt.setString(8, aluno.getSenha());
-            stmt.setString(9, aluno.getCurso());
-            stmt.setString(10, aluno.getObservacoes());
-            stmt.setBoolean(11, aluno.isAtivo());
+			stmt.setString(3, aluno.getEmail());
+			stmt.setString(4, aluno.getEndereco());
+			stmt.setString(5, aluno.getCep());
+			stmt.setString(6, aluno.getTelefone());
+			stmt.setString(7, aluno.getUsuario());
+			stmt.setString(8, aluno.getSenha());
+			stmt.setString(9, aluno.getCurso());
+			stmt.setString(10, aluno.getObservacoes());
+			stmt.setBoolean(11, aluno.isAtivo());
 			stmt.execute();
+
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -114,7 +116,7 @@ public class Armazenar {
 	public static List<Aluno> listar() {
 		List<Aluno> alunos = new ArrayList<>();
 
-		final String query = "SELECT * FROM aluno ORDER BY Id";
+		final String query = "SELECT * FROM aluno ORDER BY id";
 
 		Connection conn = null;
 		Statement stmt = null;

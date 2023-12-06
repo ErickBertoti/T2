@@ -1,4 +1,4 @@
-package src.view;
+package resources.src.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,4 +24,4 @@ public class InicialPanel extends JPanel {
 		add(alunosBtn);
 	}
 
-}
+} // fim da class InicialPanel

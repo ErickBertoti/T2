@@ -1,11 +1,11 @@
-package src.view;
+package resources.src.view;
 
 import java.awt.CardLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import src.model.Aluno;
+import resources.src.model.Aluno;
 
 
 public class AppFrame extends JFrame {

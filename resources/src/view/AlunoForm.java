@@ -1,27 +1,14 @@
-package src.view;
+package resources.src.view;
 
-import src.model.Aluno;
-import src.model.Armazenar;
-
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox; 
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import resources.src.model.Aluno;
+import resources.src.model.Armazenar;
 
 public class AlunoForm extends JPanel {
     private static final Insets FIELD_INSETS = new Insets(5, 10, 0, 0);
@@ -42,9 +29,14 @@ public class AlunoForm extends JPanel {
     private JTextField telefoneTxt;
     private JTextField usuarioTxt;
     private JPasswordField senhaTxt;
-    private JTextField cursoTxt;
+    private JComboBox<String> cursoComboBox;
     private JTextArea observacoesTxt;
-    private JCheckBox ativoCheckbox;  
+    private JCheckBox ativoCheckbox;
+
+    private String[] getCursos() {
+        String[] cursos = {"ADS", "Engenharia", "Medicina"};
+        return cursos;
+    }
 
     private JButton salvarBtn;
     private JButton cancelarBtn;
@@ -60,44 +52,43 @@ public class AlunoForm extends JPanel {
         setLayout(layout);
         addComponentListener(new ComponentAdapter() {
             @Override
-public void componentShown(ComponentEvent e) {
-    if (aluno == null) {
-        idTxt.setText("");
-        nomeTxt.setText("");
-        idadeTxt.setText("");
-        emailTxt.setText("");
-        enderecoTxt.setText("");
-        cepTxt.setText("");
-        telefoneTxt.setText("");
-        usuarioTxt.setText("");
-        senhaTxt.setText("");
-        cursoTxt.setText("");
-        observacoesTxt.setText("");
-        ativoCheckbox.setSelected(false);
-    } else {
-        idTxt.setText(Integer.toString(aluno.getId()));
-        nomeTxt.setText(aluno.getNome());
-        idadeTxt.setText(Integer.toString(aluno.getIdade()));
-        emailTxt.setText(aluno.getEmail());
-        enderecoTxt.setText(aluno.getEndereco());
-        cepTxt.setText(aluno.getCep());
-        telefoneTxt.setText(aluno.getTelefone());
-        usuarioTxt.setText(aluno.getUsuario());
-        senhaTxt.setText(aluno.getSenha());
-        cursoTxt.setText(aluno.getCurso());      
-        observacoesTxt.setText(aluno.getObservacoes());
-        ativoCheckbox.setSelected(aluno.isAtivo());
-}   
-    }
+            public void componentShown(ComponentEvent e) {
+                if (aluno == null) {
+                    idTxt.setText("");
+                    nomeTxt.setText("");
+                    idadeTxt.setText("");
+                    emailTxt.setText("");
+                    enderecoTxt.setText("");
+                    cepTxt.setText("");
+                    telefoneTxt.setText("");
+                    usuarioTxt.setText("");
+                    senhaTxt.setText("");
+                    cursoComboBox.setSelectedIndex(0); // Defina o índice inicial ou padrão
+                    observacoesTxt.setText("");
+                    ativoCheckbox.setSelected(false);
+                } else {
+                    idTxt.setText(Integer.toString(aluno.getId()));
+                    nomeTxt.setText(aluno.getNome());
+                    idadeTxt.setText(Integer.toString(aluno.getIdade()));
+                    emailTxt.setText(aluno.getEmail());
+                    enderecoTxt.setText(aluno.getEndereco());
+                    cepTxt.setText(aluno.getCep());
+                    telefoneTxt.setText(aluno.getTelefone());
+                    usuarioTxt.setText(aluno.getUsuario());
+                    senhaTxt.setText(aluno.getSenha());
+                    cursoComboBox.setSelectedItem(aluno.getCurso());
+                    observacoesTxt.setText(aluno.getObservacoes());
+                    ativoCheckbox.setSelected(aluno.isAtivo());
+                }
+            }
         });
-
 
         criarForm();
     }
 
     public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
+        this.aluno = aluno;
+    }
 
     private void criarForm() {
         JLabel rotulo;
@@ -114,12 +105,12 @@ public void componentShown(ComponentEvent e) {
         nomeTxt.setDocument(new MaxCharDocument(30));
         adicionarComponente(nomeTxt, 1, 1);
 
-        rotulo = new JLabel("Idade"); 
+        rotulo = new JLabel("Idade");
         adicionarComponente(rotulo, 2, 0);
         idadeTxt = new JTextField(5);
         adicionarComponente(idadeTxt, 2, 1);
 
-        rotulo = new JLabel("Email");  
+        rotulo = new JLabel("Email");
         adicionarComponente(rotulo, 3, 0);
         emailTxt = new JTextField(30);
         adicionarComponente(emailTxt, 3, 1);
@@ -129,34 +120,34 @@ public void componentShown(ComponentEvent e) {
         enderecoTxt = new JTextField(30);
         adicionarComponente(enderecoTxt, 4, 1);
 
-        rotulo = new JLabel("CEP");  
+        rotulo = new JLabel("CEP");
         adicionarComponente(rotulo, 5, 0);
         cepTxt = new JTextField(10);
         adicionarComponente(cepTxt, 5, 1);
 
-        rotulo = new JLabel("Telefone");  
+        rotulo = new JLabel("Telefone");
         adicionarComponente(rotulo, 6, 0);
         telefoneTxt = new JTextField(30);
         adicionarComponente(telefoneTxt, 6, 1);
 
-        rotulo = new JLabel("Usuario");  
+        rotulo = new JLabel("Usuario");
         adicionarComponente(rotulo, 7, 0);
         usuarioTxt = new JTextField(30);
         adicionarComponente(usuarioTxt, 7, 1);
 
-        rotulo = new JLabel("Senha");  
+        rotulo = new JLabel("Senha");
         adicionarComponente(rotulo, 8, 0);
         senhaTxt = new JPasswordField(15);
         adicionarComponente(senhaTxt, 8, 1);
 
         rotulo = new JLabel("Curso");
         adicionarComponente(rotulo, 9, 0);
-        cursoTxt = new JTextField(30);  
-        adicionarComponente(cursoTxt, 9, 1);
+        cursoComboBox = new JComboBox<>(getCursos());
+        adicionarComponente(cursoComboBox, 9, 1);
 
         rotulo = new JLabel("Observações");
         adicionarComponente(rotulo, 10, 0);
-        observacoesTxt = new JTextArea(3, 30); 
+        observacoesTxt = new JTextArea(3, 30);
         JScrollPane scrollPane = new JScrollPane(observacoesTxt);
         adicionarComponente(scrollPane, 10, 1, 1, 1);
 
@@ -164,7 +155,6 @@ public void componentShown(ComponentEvent e) {
         adicionarComponente(rotulo, 11, 0);
         ativoCheckbox = new JCheckBox();
         adicionarComponente(ativoCheckbox, 11, 1);
-
 
         criarBotoes();
     }
@@ -185,49 +175,74 @@ public void componentShown(ComponentEvent e) {
         salvarBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (aluno == null) {
-                    aluno = new Aluno();
-                    aluno.setNome(nomeTxt.getText());
-                    aluno.setIdade(Integer.parseInt(idadeTxt.getText())); // Assuming idadeTxt is a JTextField for age
-                    aluno.setEmail(emailTxt.getText());
-                    aluno.setEndereco(enderecoTxt.getText());
-                    aluno.setCep(cepTxt.getText());
-                    aluno.setTelefone(telefoneTxt.getText());
-                    aluno.setUsuario(usuarioTxt.getText());
-                    aluno.setSenha(senhaTxt.getText());
-                    aluno.setCurso(cursoTxt.getText());
-                    aluno.setObservacoes(observacoesTxt.getText());
-                    aluno.setAtivo(ativoCheckbox.isSelected());
-    
-                    Armazenar.inserir(aluno);
-                } else {
-                    aluno.setId(Integer.parseInt(idTxt.getText()));
-                    aluno.setNome(nomeTxt.getText());
-                    aluno.setIdade(Integer.parseInt(idadeTxt.getText())); // Assuming idadeTxt is a JTextField for age
-                    aluno.setEmail(emailTxt.getText());
-                    aluno.setEndereco(enderecoTxt.getText());
-                    aluno.setCep(cepTxt.getText());
-                    aluno.setTelefone(telefoneTxt.getText());
-                    aluno.setUsuario(usuarioTxt.getText());
-                    aluno.setSenha(senhaTxt.getText());
-                    aluno.setCurso(cursoTxt.getText());
-                    aluno.setObservacoes(observacoesTxt.getText());
-                    aluno.setAtivo(ativoCheckbox.isSelected());
-    
+                if (validarCampos()) {
+                    if (aluno == null) {
+                        aluno = new Aluno();
+                        preencherAluno();
+                        Armazenar.inserir(aluno);
+                        mostrarMensagem("Aluno inserido com sucesso!");
+                    } else {
+                        preencherAluno();
                         Armazenar.atualizar(aluno);
-    
-                        JOptionPane.showMessageDialog(AlunoForm.this, "Aluno salvo com sucesso!", AppFrame.titulo,
-                                JOptionPane.INFORMATION_MESSAGE);
-    
-                        frame.mostrarListaAlunos();
+                        mostrarMensagem("Aluno atualizado com sucesso!");
                     }
+
+                    frame.mostrarListaAlunos();
                 }
-            
+            }
         });
         panel.add(salvarBtn);
     }
 
+    private boolean validarCampos() {
+        if (nomeTxt.getText().isEmpty() || idadeTxt.getText().isEmpty() || emailTxt.getText().isEmpty() ||
+                enderecoTxt.getText().isEmpty() || usuarioTxt.getText().isEmpty() || senhaTxt.getText().isEmpty() ||
+                cursoComboBox.getSelectedItem() == null) {
+            mostrarErro("Preencha todos os campos obrigatórios!");
+            return false;
+        }
 
+        try {
+            Integer.parseInt(idadeTxt.getText());
+        } catch (NumberFormatException ex) {
+            mostrarErro("Idade deve ser um número!");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void preencherAluno() {
+        aluno.setId(parseIntOrZero(idTxt.getText()));
+        aluno.setNome(nomeTxt.getText());
+        aluno.setIdade(parseIntOrZero(idadeTxt.getText()));
+        aluno.setEmail(emailTxt.getText());
+        aluno.setEndereco(enderecoTxt.getText());
+        aluno.setCep(cepTxt.getText());
+        aluno.setTelefone(telefoneTxt.getText());
+        aluno.setUsuario(usuarioTxt.getText());
+        aluno.setSenha(senhaTxt.getText());
+        aluno.setCurso((String) cursoComboBox.getSelectedItem());
+        aluno.setObservacoes(observacoesTxt.getText());
+        aluno.setAtivo(ativoCheckbox.isSelected());
+    }
+    
+    private int parseIntOrZero(String text) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            return 0; 
+        }
+    }
+    
+
+    private void mostrarErro(String mensagem) {
+        JOptionPane.showMessageDialog(AlunoForm.this, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void mostrarMensagem(String mensagem) {
+        JOptionPane.showMessageDialog(AlunoForm.this, mensagem, AppFrame.titulo, JOptionPane.INFORMATION_MESSAGE);
+    }
 
     private void criarCancelarBtn(JPanel panel) {
         cancelarBtn = new JButton("Cancelar");

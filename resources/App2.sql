@@ -11,6 +11,6 @@ cep VARCHAR(15),
 telefone VARCHAR(15), 
 usuario VARCHAR(255) NOT NULL, 
 senha VARCHAR(255) NOT NULL, 
-curso VARCHAR(50) NOT NULL , 
-observacoes VARCHAR(255),  
+curso VARCHAR(50) NOT NULL, 
+observacoes VARCHAR(255) NOT NULL,  
 ativo BOOLEAN NOT NULL CHECK (ativo IN (TRUE, FALSE)));
