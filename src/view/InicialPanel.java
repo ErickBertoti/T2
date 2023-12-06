@@ -24,4 +24,4 @@ public class InicialPanel extends JPanel {
 		add(alunosBtn);
 	}
 
-} // fim da class InicialPanel
+}

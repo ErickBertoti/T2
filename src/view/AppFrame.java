@@ -44,7 +44,7 @@ public class AppFrame extends JFrame {
 	}
 	
 	public void mostrarFormAlunos(Aluno aluno) {
-		AlunoForm.setAluno(aluno);
+		alunoForm.setAluno(aluno);
 		layout.show(cardsPane, AlunoForm.class.getName());
 	}
 

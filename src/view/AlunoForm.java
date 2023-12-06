@@ -95,7 +95,8 @@ public void componentShown(ComponentEvent e) {
         criarForm();
     }
 
-    public static void setAluno(Aluno aluno) {
+    public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
 
     private void criarForm() {
