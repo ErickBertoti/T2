@@ -1,4 +1,5 @@
 package GUI;
+
 public class Aluno {
     
     private int id;

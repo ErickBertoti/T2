@@ -1,3 +1,4 @@
+package src;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -5,7 +6,7 @@ import java.sql.SQLException;
 public class ConexaoDB {
     private static final String URL = "jdbc:mysql://localhost:3306/t2";
     private static final String USUARIO = "root";
-    private static final String SENHA = "Erick23015@";
+    private static final String SENHA = "senai";
 
     private static Connection conexao;
 
