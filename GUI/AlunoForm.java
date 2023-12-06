@@ -94,9 +94,9 @@ public void componentShown(ComponentEvent e) {
         criarForm();
     }
 
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
+    public static void setAluno(Aluno aluno) {
+		Aluno Aluno = aluno;
+	}
 
     private void criarForm() {
         JLabel rotulo;

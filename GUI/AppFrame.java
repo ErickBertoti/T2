@@ -37,12 +37,12 @@ public class AppFrame extends JFrame {
 	}
 
 	public void mostrarListaAlunos() {
-		AlunoListPanel.recarregar();
+		alunoListPanel.recarregar();
 		layout.show(cardsPane, AlunoListPanel.class.getName());
 	}
 	
 	public void mostrarFormAlunos(Aluno aluno) {
-		AlunoForm.setAlunos(aluno);
+		AlunoForm.setAluno(aluno);
 		layout.show(cardsPane, AlunoForm.class.getName());
 	}
 

@@ -24,7 +24,7 @@ public class AlunoListPanel extends JPanel {
 	private JButton editarAlunoBtn;
 	private JButton removerAlunoBtn;
 	private JTable tabela;
-	private AlunoTableModel tableModel;
+	private AlunoTableModel alunoTableModel;
 
 	public AlunoListPanel(AppFrame appFrame) {
 		frame = appFrame;
@@ -36,7 +36,7 @@ public class AlunoListPanel extends JPanel {
 	}
 
 	public void recarregar() {
-		tableModel.carregar(Armazenar.listar());
+		alunoTableModel.carregar(Armazenar.listar());
 	}
 
 	private void criarComandosPanel() {
@@ -59,7 +59,7 @@ public class AlunoListPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.mostrarFormAlunos(tableModel.getAluno(tabela.getSelectedRow()));
+				frame.mostrarFormAlunos(alunoTableModel.getAluno(tabela.getSelectedRow()));
 			}
 		});
 		panel.add(editarAlunoBtn);
@@ -68,12 +68,12 @@ public class AlunoListPanel extends JPanel {
 		removerAlunoBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Aluno aluno = tableModel.getAluno(tabela.getSelectedRow());
+				Aluno aluno = alunoTableModel.getAluno(tabela.getSelectedRow());
 				int resposta = JOptionPane.showConfirmDialog(AlunoListPanel.this, "Tem certeza irmão?",
 						AppFrame.titulo, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if (resposta == JOptionPane.YES_OPTION) {
 					Armazenar.remover(aluno);
-					tableModel.remover(aluno);
+					alunoTableModel.remover(aluno);
 				}
 			}
 		});
@@ -87,8 +87,8 @@ public class AlunoListPanel extends JPanel {
 	private void criarTabelaPanel() {
 		JPanel panel = new JPanel();
 
-		tableModel = new AlunoTableModel(Armazenar.listar());
-		tabela = new JTable(tableModel);
+		alunoTableModel = new AlunoTableModel(Armazenar.listar());
+		tabela = new JTable(alunoTableModel);
 		tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tabela.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
