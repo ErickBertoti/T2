@@ -1,4 +1,4 @@
-package resources.src.view;
+package resources.src.GUI;
 
 import java.awt.CardLayout;
 
