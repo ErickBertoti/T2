@@ -14,7 +14,9 @@ public class Main {
 
         private static void Rodar() {
             AppFrame frame = new AppFrame();    
-        }
+            
+            frame.mostrar();
+    }
 
 
 
