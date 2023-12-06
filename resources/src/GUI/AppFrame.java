@@ -59,3 +59,4 @@ public class AppFrame extends JFrame {
 		cardsPane.add(alunoForm, AlunoForm.class.getName());
 	}
 }
+
