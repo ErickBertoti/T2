@@ -124,6 +124,8 @@ public class Aluno {
 		return String.format("%d: %s, %s\n", id, nome, idade, email, endereco, cep, telefone, usuario, senha, curso, observacoes, ativo);
 	}
 
+
+    //Impede IDs de alunos serem iguais
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {

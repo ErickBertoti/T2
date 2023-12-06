@@ -3,7 +3,8 @@ CREATE DATABASE t2;
 use t2;
 
 CREATE TABLE aluno (id int AUTO_INCREMENT PRIMARY KEY, 
-nome VARCHAR(255) NOT NULL, idade int NOT NULL , 
+nome VARCHAR(255) NOT NULL, 
+idade int NOT NULL, 
 email VARCHAR(255) NOT NULL, 
 endereco VARCHAR(255) NOT NULL, 
 cep VARCHAR(15), 
@@ -11,5 +12,5 @@ telefone VARCHAR(15),
 usuario VARCHAR(255) NOT NULL, 
 senha VARCHAR(255) NOT NULL, 
 curso VARCHAR(50) NOT NULL , 
-observacoes VARCHAR(255) NOT NULL,  
-ativo BOOLEAN NOT NULL  CHECK (ativo IN (TRUE, FALSE)));
+observacoes VARCHAR(255),  
+ativo BOOLEAN NOT NULL CHECK (ativo IN (TRUE, FALSE)));
